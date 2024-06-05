@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Universal Code Formatter</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <style>
+      main {
+        padding: 15px;
+        margin: 15px;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        font-family: "Roboto", sans-serif;
+        background: #1e1e1e;
+        color: #c7c7c7;
+      }
+      .container {
+        max-width: 100%;
+        margin: 0 auto;
+        background: #2d2d2d;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+        padding: 20px;
+      }
+      textarea {
+        width: 100%;
+        margin-bottom: 10px;
+        font-family: monospace;
+        height: 350px;
+        margin-bottom: 20px;
+        font-family: monospace;
+        border-radius: 3px;
+        border: none;
+        background: #1e1e1e;
+        color: #ffffff;
+        resize: none;
+        outline: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+      }
+      h1 {
+        color: #ffffff;
+        text-align: center;
+        padding: 10px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        background: #4caf50;
+        color: #ffffff;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      .output-container {
+        position: relative;
+      }
+      .copy-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px;
+        font-size: 14px;
+      }
+      .language-info,
+      .copy-info {
+        margin-top: 10px;
+        font-style: italic;
+      }
+      .copy-info {
+        color: green;
+      }
+      footer {
+        color: #fff;
+        text-align: center;
+      }
+
+      .footer-content {
+        width: 100%;
+      }
+
+      .footer a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+      .about-us {
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      .about-us h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .about-us h2:after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 3px;
+        background-color: #ff6600;
+        margin: 10px auto 0;
+      }
+
+      .team-member {
+        display: inline-block;
+        max-width: 100%;
+        margin: 10px;
+      }
+
+      .team-member-content {
+        padding: 20px;
+        border-radius: 10px;
+        background: #2d2d2d;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+        transition: transform 0.3s;
+      }
+
+      .team-member-content:hover {
+        transform: translateY(-10px);
+      }
+
+      .team-member img {
+        margin-left: 12px;
+        margin-right: 12px;
+        margin-bottom: 12px;
+        border-radius: 10px;
+        max-width: 93%;
+        height: auto;
+      }
+
+      .team-member h3 {
+        font-size: 1.5em;
+        margin: 20px 0 10px;
+      }
+
+      .team-member p {
+        color: #666;
+        margin: 0 0 20px;
+      }
+
+      .social-icons a {
+        color: white;
+        text-decoration: none;
+      }
+
+      .social-icons img {
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+        vertical-align: middle;
+      }
+    </style>
+    <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/coderc-23.appspot.com/o/Codeformatter%2Fcode.jpg?alt=media&token=ecdee0c2-382c-49d5-8bb5-1f9b4992eb08" type="image/x-icon">
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <h1>Code Formatter</h1>
+	<br>
+        <p>Code Formatter for HTML,CSS and JavaScript.</p>
+        <br>
+        <textarea
+          id="codeInput"
+          placeholder="Paste your code here..."
+        ></textarea>
+        <br />
+        <br />
+        <button onclick="formatCode()">Format Code</button>
+        <br /><br />
+        <div class="output-container">
+          <textarea
+            id="codeOutput"
+            readonly
+            placeholder="Formatted code will appear here..."
+          ></textarea>
+          <button class="copy-button" onclick="copyCode()">Copy</button>
+        </div>
+        <div id="languageInfo" class="language-info"></div>
+        <div id="copyInfo" class="copy-info"></div>
+      </div>
+    </main>
+    <section class="about-us">
+      <h2>About Me</h2>
+      <div class="team-member">
+        <div class="team-member-content">
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/itsgaurav-23.appspot.com/o/Portfolio%2Fgaurav.jpg?alt=media&token=821a85fb-319a-4ee0-b9e1-50ea48d67e98"
+            alt="Gaurav Prajapati"
+          />
+          <h3>Gaurav Prajapati</h3>
+          <a href="https://itsgaurav-23.web.app">Visit Portfolio</a>
+          <div class="social-icons">
+            <br /><br />
+            <a href="https://github.com/thematrix09">
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/itsgaurav-23.appspot.com/o/Portfolio%2Fgithub.png?alt=media&token=f82e01f1-f30f-4ce1-96a5-17eac24f3315"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/its_gaurav._.23?igsh=azIwNDY5emVsZmQx"
+            >
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/itsgaurav-23.appspot.com/o/Portfolio%2Finsta.png?alt=media&token=6176bc4d-dfad-484b-86b3-5d91570f085e"
+              />
+            </a>
+            <a href="mailto:gauravprajapati041@gmail.com">
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/itsgaurav-23.appspot.com/o/Portfolio%2Fgmail.png?alt=media&token=8154eb8f-77b6-4aa0-a1ed-12940b4d2d0d"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/gaurav-prajapati-b08505259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+            >
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/itsgaurav-23.appspot.com/o/Portfolio%2Fin.png?alt=media&token=5da25603-d236-4046-852b-e53e578b9cee"
+              />
+            </a>
+            <br />
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://unpkg.com/prettier@2.3.2/standalone.js"></script>
+    <script src="https://unpkg.com/prettier@2.3.2/parser-html.js"></script>
+    <script src="https://unpkg.com/prettier@2.3.2/parser-babel.js"></script>
+    <script src="https://unpkg.com/prettier@2.3.2/parser-postcss.js"></script>
+    <script src="https://unpkg.com/prettier@2.3.2/parser-typescript.js"></script>
+    <script src="https://unpkg.com/prettier@2.3.2/parser-markdown.js"></script>
+    <script src="https://unpkg.com/prettier@2.3.2/parser-yaml.js"></script>
+    <script src="https://unpkg.com/prettier@2.3.2/parser-graphql.js"></script>
+    <script src="https://unpkg.com/prettier@2.3.2/parser-angular.js"></script>
+    <script src="https://unpkg.com/prettier@2.3.2/parser-lwc.js"></script>
+    <script src="https://unpkg.com/prettier@2.3.2/parser-json.js"></script>
+    <script>
+      function formatCode() {
+        const code = document.getElementById("codeInput").value;
+        const language = detectLanguage(code);
+        let formattedCode;
+
+        try {
+          formattedCode = prettier.format(code, {
+            parser: language,
+            plugins: prettierPlugins,
+          });
+        } catch (e) {
+          formattedCode = "Error formatting code: " + e.message;
+        }
+
+        document.getElementById("codeOutput").value = formattedCode;
+        document.getElementById(
+          "languageInfo"
+        ).innerText = `Detected Language: ${language}`;
+        document.getElementById("copyInfo").innerText = ""; // Clear any previous copy info
+      }
+
+      function detectLanguage(code) {
+        if (code.trim().startsWith("<")) {
+          return "html";
+        } else if (
+          code.includes("function") ||
+          code.includes("const") ||
+          code.includes("let") ||
+          code.includes("import") ||
+          code.includes("export")
+        ) {
+          return "babel";
+        } else if (code.includes("type") || code.includes("interface")) {
+          return "typescript";
+        } else if (code.trim().startsWith("#")) {
+          return "yaml";
+        } else if (
+          code.trim().startsWith("---") ||
+          code.trim().startsWith(">") ||
+          code.includes("* ")
+        ) {
+          return "markdown";
+        } else if (
+          code.trim().startsWith("query") ||
+          code.trim().startsWith("mutation")
+        ) {
+          return "graphql";
+        } else if (
+          code.trim().startsWith("import {") ||
+          code.includes("Component")
+        ) {
+          return "angular";
+        } else if (code.trim().startsWith("{") && code.trim().endsWith("}")) {
+          return "json";
+        } else {
+          return "css";
+        }
+      }
+
+      function copyCode() {
+        const codeOutput = document.getElementById("codeOutput");
+        codeOutput.select();
+        document.execCommand("copy");
+        document.getElementById("copyInfo").innerText =
+          "Formatted code copied to clipboard!";
+        setTimeout(
+          () => (document.getElementById("copyInfo").innerText = ""),
+          3000
+        ); // Clear message after 3 seconds
+      }
+    </script>
+    <br />
+    <br />
+    <hr />
+    <section class="d-block">
+      <footer class="footer">
+        <div class="footer-content">
+          <p>&copy; 2024 Universal Code Formatter. All rights reserved.</p>
+          <p>
+            Contact me at :-
+            <a href="mailto: gauravprajapati041@gmail.com"
+              >gauravprajapati041@gmail.com</a
+            >
+          </p>
+        </div>
+      </footer>
+    </section>
+  </body>
+</html>
